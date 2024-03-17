@@ -7,7 +7,7 @@ import java.util.Date;
 @Entity
 @Getter @Setter @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString @Builder
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 public interface PatientService {
+    Patient getPatientById(Long id);
     void addPatient(Patient patient);
     List<Patient> getAllPatients();
     int getPatientsCount(String name);

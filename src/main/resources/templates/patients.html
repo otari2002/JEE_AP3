@@ -29,10 +29,8 @@
     </style>
 </head>
 <body>
+<div th:replace="navbar.html :: navbar"></div>
 <div class="container">
-    <a th:href="@{'/patients?page=0'}">
-        <h1 class="mt-4 mb-4">Patients</h1>
-    </a>
     <form class="form-inline search-form" th:action="@{'/patients'}" method="get">
         <div class="form-group mx-sm-3 mb-2">
             <input type="text" class="form-control" name="keyword" id="searchKeyword" th:value="${keyword}" placeholder="Nom...">
@@ -58,6 +56,9 @@
             <td th:text="${patient.score}"></td>
             <td>
                 <a class="btn btn-danger" th:href="@{delete(id=${patient.id},page=${currentPage},keyword=${keyword})}">Supprimer</a>
+            </td>
+            <td>
+                <a class="btn btn-danger" th:href="@{editPatient(id=${patient.id})}">Modifier</a>
             </td>
         </tr>
         </tbody>
