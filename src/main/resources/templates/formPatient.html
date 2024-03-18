@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="template.html"
+      layout:decorate="navbar.html"
 >
 <head>
   <meta charset="UTF-8">
@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<div th:replace="navbar.html :: navbar"></div>
+
 <div layout:fragment="content">
   <div class="p-3">
     <form method="post" th:action="@{/savePatient}" th:object="${patient}">
@@ -41,6 +41,7 @@
     </form>
 
   </div>
+</div>
 </div>
 </body>
 </html>

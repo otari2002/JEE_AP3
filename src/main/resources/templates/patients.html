@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="navbar.html"
+>
 <head>
     <meta charset="UTF-8">
     <title>Patients</title>
@@ -29,7 +32,7 @@
     </style>
 </head>
 <body>
-<div th:replace="navbar.html :: navbar"></div>
+<div layout:fragment="content">
 <div class="container">
     <form class="form-inline search-form" th:action="@{'/patients'}" method="get">
         <div class="form-group mx-sm-3 mb-2">
@@ -80,6 +83,7 @@
             </li>
         </ul>
     </nav>
+</div>
 </div>
 </body>
 </html>
