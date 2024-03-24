@@ -18,10 +18,14 @@
             <li class="nav-item active">
                 <a class="nav-link" th:href="@{/patients}">Home</a>
             </li>
-            <li class="nav-item">
+            <li  th:if="${#authorization.expression('hasRole(''ADMIN'')')}" class="nav-item">
                 <a class="nav-link" th:href="@{/formPatient}">Nouveau Patient</a>
             </li>
         </ul>
+        <form class="form-inline my-2 my-lg-0" method="post" th:action="@{/logout}">
+            <a class="nav-link" href="#"  th:text="${#authentication.name}"> </a>
+            <button class="nav-link" type="submit" >Logout</button>
+        </form>
     </div>
 </nav>
 <section layout:fragment="content"></section>

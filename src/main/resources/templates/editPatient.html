@@ -11,32 +11,30 @@
 <body>
 <div layout:fragment="content">
   <div class="p-3">
-    <form method="post" th:action="@{savePatient}">
-      <div class="mb-3 mt-3">
-        <label for="id" class="form-label">ID:</label>
-        <label th:text="${patient.id}"></label>
-        <input type="hidden" class="form-control" id="id" placeholder="ID" name="id" th:value="${patient.id}">
-      </div>
+    <form method="post" th:action="@{savePatient}" th:object="${patient}">
       <div class="mb-3 mt-3">
         <label for="nom" class="form-label">Nom:</label>
-        <input type="text" class="form-control" id="nom" placeholder="Nom" name="nom" th:value="${patient.nom}">
-        <span class="text-danger" th:errors="${patient.nom}"></span>
+        <input type="text" class="form-control" id="nom" placeholder="Nom" th:field="*{nom}">
+        <span class="text-danger" th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
       </div>
       <div class="mb-3">
         <label for="dateNaissance" class="form-label">Date Naissance:</label>
         <input type="date" class="form-control" id="dateNaissance" placeholder="Date Naissance"
-               name="dateNaissance" th:value="${patient.dateNaissance}">
+               th:field="*{dateNaissance}" th:format="'dd-mm-yyyy'">
+        <span class="text-danger" th:if="${#fields.hasErrors('dateNaissance')}" th:errors="*{dateNaissance}"></span>
       </div>
       <div class="mb-3 mt-3">
         <label for="score" class="form-label">Score:</label>
         <input type="text" class="form-control" id="score" placeholder="Score"
-               name="score" th:value="${patient.score}">
-        <span class="text-danger" th:errors="${patient.score}" th:value="${patient.malade}"></span>
+               th:field="*{score}">
+        <span class="text-danger" th:if="${#fields.hasErrors('score')}" th:errors="*{score}"></span>
       </div>
       <div class="form-check mb-3">
         <label class="form-check-label">
-          <input class="form-check-input" type="checkbox" name="remember"> Malade
+          <input class="form-check-input" type="checkbox" id="malade" th:checked="*{malade}" th:field="*{malade}">
+          Malade
         </label>
+        <span class="text-danger" th:if="${#fields.hasErrors('malade')}" th:errors="*{malade}"></span>
       </div>
       <button type="submit" class="btn btn-primary">Save</button>
     </form>

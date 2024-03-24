@@ -31,22 +31,21 @@ public class PatientController {
         model.addAttribute("keyword", keyword);
         return "patients";
     }
-
     @GetMapping("/delete")
     public String deletePatient(Long id, String keyword, int page) {
         patientService.deletePatient(id);
         return "redirect:/patients?page="+page+"&keyword="+keyword;
     }
-
     @GetMapping("/formPatient")
     public String formPatient(Model model ){
         model.addAttribute("patient",new Patient());
         return "formPatient";
     }
     @PostMapping("/savePatient")
-    public String savePatient(@Valid Patient patient, BindingResult bindingResult, Model model){
+    public String savePatient(@Valid Patient patient, Model model, BindingResult bindingResult){
         Logger log = Logger.getLogger(PatientRepository.class.getName());
         log.info("Patient: "+patient);
+        if(bindingResult.hasErrors()) return "formPatients";
         patientService.addPatient(patient);
         model.addAttribute("patient", new Patient());
         return "formPatient";
@@ -60,6 +59,10 @@ public class PatientController {
     @GetMapping("/")
     public String home(){
         return "redirect:/patients" ;
+    }
 
+    @GetMapping("/webjars/**")
+    public String home1(){
+        return "redirect:/patients" ;
     }
 }
